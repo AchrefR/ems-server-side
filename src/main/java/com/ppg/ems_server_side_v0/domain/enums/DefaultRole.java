@@ -6,5 +6,6 @@ public enum DefaultRole {
     HR,
     OPERATIONAL,
     IT,
-    USER
+    USER,
+    ADMIN
 }

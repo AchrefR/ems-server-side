@@ -1,14 +1,15 @@
 package com.ppg.ems_server_side_v0.domain;
 
-import com.ppg.ems_server_side_v0.domain.enums.DefaultRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Data
@@ -18,22 +19,22 @@ import java.util.List;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Generator")
-    @SequenceGenerator(name = "Generator",sequenceName = "Generator" ,allocationSize = 50)
-    private String roleId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String roleId = UUID.randomUUID().toString();
 
-    private DefaultRole role;
+    private String role;
 
-    @OneToMany(fetch = FetchType.LAZY , mappedBy = "role", cascade = CascadeType.ALL)
-    List<User> users = new ArrayList<>();;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Role_Access",joinColumns = {
+    @JoinTable(name = "Role_Access", joinColumns = {
             @JoinColumn(referencedColumnName = "roleId")
-    },inverseJoinColumns = {
+    }, inverseJoinColumns = {
             @JoinColumn(referencedColumnName = "accessId")
     })
-    List<Access> accesses =  new ArrayList<>();
+    private List<Access> accesses = new ArrayList<>();
 
 
 }

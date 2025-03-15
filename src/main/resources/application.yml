@@ -17,3 +17,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+flyway:
+  user: postgres
+  password: postgres
+  schemas: emsv0
+  enabled: true
+  url: jdbc:postgresql://localhost:5432/emsv0
+  locations: classpath:db/migration
