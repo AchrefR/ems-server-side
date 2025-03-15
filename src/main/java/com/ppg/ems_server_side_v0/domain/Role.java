@@ -21,7 +21,7 @@ public class Role {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String roleId = UUID.randomUUID().toString();
+    private String roleId ;
 
     private String role;
 

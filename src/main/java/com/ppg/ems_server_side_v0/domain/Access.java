@@ -21,7 +21,7 @@ public class Access {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String accessId = UUID.randomUUID().toString();
+    private String accessId ;
 
     private String title;
 
