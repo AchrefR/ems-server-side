@@ -21,7 +21,7 @@ public class Role {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String roleId ;
+    private String roleId;
 
     private String role;
 
@@ -30,9 +30,9 @@ public class Role {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Role_Access", joinColumns = {
-            @JoinColumn(referencedColumnName = "roleId")
+            @JoinColumn(name = "roleId")
     }, inverseJoinColumns = {
-            @JoinColumn(referencedColumnName = "accessId")
+            @JoinColumn(name = "accessId")
     })
     private List<Access> accesses = new ArrayList<>();
 

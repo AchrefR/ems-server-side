@@ -9,18 +9,12 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update  # changez en create ou validate selon vos besoins
-    show-sql: true
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-flyway:
-  user: postgres
-  password: postgres
-  schemas: emsv0
-  enabled: true
-  url: jdbc:postgresql://localhost:5432/emsv0
-  locations: classpath:db/migration
+        show_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
