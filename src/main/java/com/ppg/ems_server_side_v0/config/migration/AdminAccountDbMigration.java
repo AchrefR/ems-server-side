@@ -7,6 +7,7 @@ import com.ppg.ems_server_side_v0.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -20,6 +21,8 @@ public class AdminAccountDbMigration implements ApplicationListener<Notifier> {
 
     private final RoleRepository roleRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public void onApplicationEvent(Notifier event) {
 
@@ -28,7 +31,7 @@ public class AdminAccountDbMigration implements ApplicationListener<Notifier> {
             this.userRepository.save(this.userRepository.save(User.builder().
                     userId(UUID.randomUUID().toString()).
                     email("admin@admin.com").
-                    password("admin").
+                    password(this.passwordEncoder.encode("admin")).
                     role(role).build()));
 
         }
