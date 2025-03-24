@@ -18,12 +18,10 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationDTO authenticationDTO) {
-
+         System.out.println("auth Test endpoint called");
         return ResponseEntity.ok(this.authenticationService.authenticate(authenticationDTO));
-
 
     }
 }

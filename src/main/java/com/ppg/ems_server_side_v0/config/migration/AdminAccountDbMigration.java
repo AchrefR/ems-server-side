@@ -28,11 +28,11 @@ public class AdminAccountDbMigration implements ApplicationListener<Notifier> {
 
         if (this.roleRepository.findRoleByRole("ADMIN").isPresent() && this.userRepository.findByRole_Role("ADMIN").isEmpty()) {
             Role role = this.roleRepository.findRoleByRole("ADMIN").orElseThrow(() -> new RuntimeException("Role not found"));
-            this.userRepository.save(this.userRepository.save(User.builder().
+            this.userRepository.save(User.builder().
                     userId(UUID.randomUUID().toString()).
                     email("admin@admin.com").
                     password(this.passwordEncoder.encode("admin")).
-                    role(role).build()));
+                    role(role).build());
 
         }
     }
