@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +13,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class JobPost {
-
-    @Id
-    private String jobPostId;
+public class JobPost extends BaseEntity {
 
     private String title;
 
     private String description;
 
     @OneToMany(mappedBy = "jobPost")
-    private List<Application> application = new ArrayList<Application>();
+    private List<Application> application ;
 
 }

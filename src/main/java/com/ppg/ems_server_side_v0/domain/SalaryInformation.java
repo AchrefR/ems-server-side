@@ -8,22 +8,21 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.math.BigDecimal;
 
-
-@SuperBuilder
 @Data
 @AllArgsConstructor
-@Entity
 @NoArgsConstructor
+@Entity
+@SuperBuilder
 
-public class Access extends BaseEntity {
+public class SalaryInformation extends BaseEntity {
 
-    private String title;
+    private BigDecimal salary;
 
-    @ManyToMany(mappedBy = "accesses", fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
+    private double hourlyRate;
+
+    @OneToOne(mappedBy = "salaryInformation",fetch = FetchType.EAGER)
+    private Employee employee;
 
 }

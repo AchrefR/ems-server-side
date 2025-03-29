@@ -1,25 +1,21 @@
 package com.ppg.ems_server_side_v0.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Data
 
-public class Address {
-
-    @Id
-    private String addressId;
+public class Address extends BaseEntity {
 
     private String streetName;
 
@@ -31,7 +27,7 @@ public class Address {
 
     private String town;
 
-    @OneToOne(mappedBy = "address",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "address", fetch = FetchType.EAGER)
     private Person person;
 
 }

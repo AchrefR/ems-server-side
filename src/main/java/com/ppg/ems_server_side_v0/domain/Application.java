@@ -5,30 +5,41 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Application {
-
-    @Id
-    private String applicationId;
+public class Application extends BaseEntity {
 
     private String title;
 
     private String description;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    @JoinColumn(name="resumeId",referencedColumnName = "cvId",nullable = false)
-    private CV resume;
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "resumeId", referencedColumnName = "id", nullable = false)
+    private Cv resume;
 
     private LocalDateTime appliedDate;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="jobPostId",referencedColumnName = "jobPostId",nullable = false)
+    @JoinColumn(name = "jobPostId", referencedColumnName = "id", nullable = false)
     private JobPost jobPost;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "appliedByPersonId", referencedColumnName = "id", nullable = false)
+    private Person appliedBy;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "relatedApplication")
+    private List<Interview> interview;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "interviewerEmployeeId", referencedColumnName = "id", nullable = false)
+    private Employee interviewerEmployee;
 }

@@ -1,18 +1,10 @@
 package com.ppg.ems_server_side_v0.model.api.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record UserDTO(
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserDTO {
+        String email,
 
-    private String email;
+        String password,
 
-    private String password;
-
-    private String role;
-
-}
+        String role
+) {}

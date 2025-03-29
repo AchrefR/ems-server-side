@@ -25,7 +25,7 @@ public class RoleDbMigration implements ApplicationListener<Notifier> {
         if (this.roleRepository.findRoleByRole("ADMIN").isEmpty()) {
             roleNames.forEach(roleName -> {
                 this.roleRepository.save(Role.builder().
-                        roleId(UUID.randomUUID().toString())
+                        id(UUID.randomUUID().toString())
                         .role(roleName.toString()).build());
             });
         }

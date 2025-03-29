@@ -8,22 +8,20 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-
-@SuperBuilder
 @Data
 @AllArgsConstructor
-@Entity
 @NoArgsConstructor
+@SuperBuilder
+@Entity
+public class Team extends BaseEntity {
 
-public class Access extends BaseEntity {
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team")
+    private List<Project> projects;
 
-    private String title;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team")
+    private List<Employee> employees;
 
-    @ManyToMany(mappedBy = "accesses", fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
 
 }

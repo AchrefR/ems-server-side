@@ -1,5 +1,6 @@
 package com.ppg.ems_server_side_v0.domain;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,22 +9,19 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-
-@SuperBuilder
 @Data
 @AllArgsConstructor
-@Entity
 @NoArgsConstructor
+@SuperBuilder
+@Entity
+public class Folder extends BaseEntity{
 
-public class Access extends BaseEntity {
+    private String folderName;
 
-    private String title;
+    private String ECMPath;
 
-    @ManyToMany(mappedBy = "accesses", fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "folder")
+    private List<Document>  documents;
 }

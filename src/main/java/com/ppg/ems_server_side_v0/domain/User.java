@@ -23,13 +23,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @SuperBuilder
 @Table(name = "appuser")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class User implements UserDetails {
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String userId;
+public class User extends BaseEntity implements UserDetails  {
 
     private String email;
 
@@ -37,8 +31,11 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "roleId", referencedColumnName = "roleId", nullable = false)
+    @JoinColumn(name = "roleId", referencedColumnName = "id", nullable = false)
     private Role role;
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
+    private Person person;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

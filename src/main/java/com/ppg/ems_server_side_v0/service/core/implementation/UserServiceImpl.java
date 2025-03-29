@@ -2,16 +2,18 @@ package com.ppg.ems_server_side_v0.service.core.implementation;
 
 import com.ppg.ems_server_side_v0.domain.Role;
 import com.ppg.ems_server_side_v0.domain.User;
+import com.ppg.ems_server_side_v0.mapper.UserMapper;
 import com.ppg.ems_server_side_v0.model.api.request.UserDTO;
+import com.ppg.ems_server_side_v0.model.api.response.UserResponse;
 import com.ppg.ems_server_side_v0.repository.RoleRepository;
 import com.ppg.ems_server_side_v0.repository.UserRepository;
-import com.ppg.ems_server_side_v0.service.UserService;
+import com.ppg.ems_server_side_v0.service.core.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,19 +25,21 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final UserMapper userMapper;
+
     @Override
-    public User addUser(UserDTO userDTO) {
+    public UserResponse addUser(UserDTO userDTO) {
 
-        Role role = this.roleRepository.findRoleByRole(userDTO.getRole()).orElseThrow(() -> new RuntimeException("Role not found"));
+        Role role = this.roleRepository.findRoleByRole(userDTO.role()).orElseThrow(() -> new RuntimeException("Role not found"));
 
-        User user = User.builder().email(userDTO.getEmail()).
-                password(this.passwordEncoder.encode(userDTO.getPassword())).
+        User user = User.builder().email(userDTO.email()).
+                password(this.passwordEncoder.encode(userDTO.password())).
                 role(role).
                 build();
 
         if (!this.userRepository.findByEmail(user.getEmail()).isPresent()) {
 
-            return this.userRepository.save(user);
+            return this.userMapper.userMapper(this.userRepository.save(user));
 
         } else {
 
@@ -45,19 +49,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(UserDTO userDTO, String id) {
+    public UserResponse updateUser(UserDTO userDTO, String id) {
 
         User user = this.userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 
-        user.setEmail(userDTO.getEmail());
+        user.setEmail(userDTO.email());
 
-        user.setPassword(userDTO.getPassword());
+        user.setPassword(userDTO.password());
 
         user.setRole(this.roleRepository.
-                findRoleByRole(userDTO.getRole()).
+                findRoleByRole(userDTO.role()).
                 orElseThrow(() -> new RuntimeException("Role not found")));
 
-        return this.userRepository.save(user);
+        return this.userMapper.userMapper(this.userRepository.save(user));
     }
 
     @Override
@@ -67,16 +71,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(String id) {
+    public UserResponse findUserById(String id) {
 
-        return this.userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = this.userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+
+        return this.userMapper.userMapper(user);
 
     }
 
     @Override
-    public List<User> findAllUser() {
+    public List<UserResponse> findAllUser() {
 
-        return this.userRepository.findAll();
+        return this.userMapper.allUsersMapper(this.userRepository.findAll());
 
     }
 

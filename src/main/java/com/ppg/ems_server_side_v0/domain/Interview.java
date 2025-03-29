@@ -8,22 +8,18 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
-
-@SuperBuilder
+@Entity
 @Data
 @AllArgsConstructor
-@Entity
 @NoArgsConstructor
+@SuperBuilder
+public class Interview extends BaseEntity{
 
-public class Access extends BaseEntity {
+    private LocalDateTime date;
 
-    private String title;
-
-    @ManyToMany(mappedBy = "accesses", fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "relatedApplicationId", referencedColumnName = "id", nullable = false)
+    private Application relatedApplication;
 }

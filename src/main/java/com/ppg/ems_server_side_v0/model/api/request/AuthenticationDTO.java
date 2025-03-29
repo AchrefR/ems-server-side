@@ -6,13 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class AuthenticationDTO {
 
-    private String email;
+public record AuthenticationDTO(
 
-    private String password;
-}
+        String email,
+
+        String password
+
+) {}

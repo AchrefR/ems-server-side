@@ -3,7 +3,9 @@ package com.ppg.ems_server_side_v0.controller;
 import com.ppg.ems_server_side_v0.domain.User;
 import com.ppg.ems_server_side_v0.model.api.request.UserDTO;
 
-import com.ppg.ems_server_side_v0.service.UserService;
+import com.ppg.ems_server_side_v0.model.api.response.UserResponse;
+import com.ppg.ems_server_side_v0.repository.RoleRepository;
+import com.ppg.ems_server_side_v0.service.core.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +19,17 @@ public class UserController {
 
     private final UserService userService;
 
+    private final RoleRepository roleRepository;
+
     @PostMapping("/user/")
-    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserResponse> addUser(@RequestBody UserDTO userDTO) {
 
         return ResponseEntity.ok().body(this.userService.addUser(userDTO));
 
     }
 
     @PutMapping("/updateById/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody UserDTO userDTO, @PathVariable String id) {
+    public ResponseEntity<UserResponse> updateUser(@RequestBody UserDTO userDTO, @PathVariable String id) {
 
         return ResponseEntity.ok(this.userService.updateUser(userDTO, id));
 
@@ -41,14 +45,14 @@ public class UserController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable String id) {
+    public ResponseEntity<UserResponse> findUserById(@PathVariable String id) {
 
         return ResponseEntity.ok(this.userService.findUserById(id));
 
     }
 
-    @GetMapping("/findAll")
-    public ResponseEntity<List<User>> findAllUser() {
+    @GetMapping("/findAll/")
+    public ResponseEntity<List<UserResponse>> findAllUser() {
 
         return ResponseEntity.ok(this.userService.findAllUser());
 

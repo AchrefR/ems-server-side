@@ -5,27 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Builder
+@SuperBuilder
 @Data
 @AllArgsConstructor
 @Entity
 @NoArgsConstructor
-public class Role {
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String roleId;
+public class Role extends BaseEntity {
 
     private String role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
     private List<User> users = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
