@@ -23,7 +23,7 @@ public class Access extends BaseEntity {
 
     private String title;
 
-    @ManyToMany(mappedBy = "accesses", fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "access")
+    private List<Role_Access> role_accesses = new ArrayList<>();
 
 }

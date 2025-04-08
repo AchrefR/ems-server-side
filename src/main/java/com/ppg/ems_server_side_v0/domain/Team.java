@@ -17,10 +17,10 @@ import java.util.List;
 @Entity
 public class Team extends BaseEntity {
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team")
+    @OneToMany(mappedBy = "team")
     private List<Project> projects;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team")
+    @OneToMany( mappedBy = "team")
     private List<Employee> employees;
 
 

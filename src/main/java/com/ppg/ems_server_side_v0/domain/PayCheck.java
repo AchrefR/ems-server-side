@@ -54,7 +54,7 @@ public class PayCheck  extends BaseEntity{
 
     private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "relatedEmployeeId", referencedColumnName = "id", nullable = false)
     private Employee relatedEmployee;
 

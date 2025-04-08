@@ -25,19 +25,19 @@ public class Project extends BaseEntity {
 
     private String deadline;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "departmentId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departmentId", referencedColumnName = "id")
     private Department department;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @OneToMany( mappedBy = "project")
     private List<Task> tasks;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "teamId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teamId", referencedColumnName = "id")
     private Team team;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "projectLeaderId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "projectLeaderId", referencedColumnName = "id")
     private Employee projectLeader;
 
 

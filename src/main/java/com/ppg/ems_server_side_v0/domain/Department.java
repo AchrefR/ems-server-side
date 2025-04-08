@@ -21,13 +21,13 @@ public class Department extends BaseEntity {
 
     private String departmentType;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
+    @OneToMany( mappedBy = "department")
     private List<Employee> employees;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
+    @OneToMany( mappedBy = "department")
     private List<Document> documents;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
+    @OneToMany( mappedBy = "department")
     private List<Project> projects;
 
 

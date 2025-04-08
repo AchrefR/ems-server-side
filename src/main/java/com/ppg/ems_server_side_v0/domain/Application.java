@@ -26,7 +26,7 @@ public class Application extends BaseEntity {
     @JoinColumn(name = "resumeId", referencedColumnName = "id", nullable = false)
     private Cv resume;
 
-    private LocalDateTime appliedDate;
+    private String appliedDate;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "jobPostId", referencedColumnName = "id", nullable = false)
@@ -36,10 +36,9 @@ public class Application extends BaseEntity {
     @JoinColumn(name = "appliedByPersonId", referencedColumnName = "id", nullable = false)
     private Person appliedBy;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "relatedApplication")
+    @OneToMany( mappedBy = "relatedApplication")
     private List<Interview> interview;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "interviewerEmployeeId", referencedColumnName = "id", nullable = false)
-    private Employee interviewerEmployee;
+
+
 }

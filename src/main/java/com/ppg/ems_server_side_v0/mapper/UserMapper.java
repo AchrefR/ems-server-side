@@ -9,15 +9,15 @@ import java.util.List;
 @Component
 public class UserMapper {
 
-    public UserResponse userMapper(User user) {
+    public UserResponse toUserReponse(User user) {
 
         return new UserResponse(user.getId(),
                 user.getEmail(),
                 user.getRole().getRole());
     }
 
-    public List<UserResponse> allUsersMapper(List<User> users) {
+    public List<UserResponse> toUserReponseList(List<User> users) {
 
-        return users.stream().map((user)->userMapper(user)).toList();
+        return users.stream().map((user)-> toUserReponse(user)).toList();
     }
 }

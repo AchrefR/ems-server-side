@@ -6,5 +6,8 @@ public record UserDTO(
 
         String password,
 
-        String role
+        String roleId,
+
+        String personId
+
 ) {}

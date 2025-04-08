@@ -20,17 +20,17 @@ import java.util.List;
 @SuperBuilder
 public class Attendance extends BaseEntity {
 
-    private LocalDateTime checkInTime;
+    private String checkInTime;
 
-    private LocalDateTime checkOutTime;
+    private String checkOutTime;
 
     private BigDecimal workHours;
 
     private boolean isAbsent;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name="relatedEmployeeId",referencedColumnName = "id",nullable = false)
-    private Employee relatedEmployee ;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="relatedEmployeeId",referencedColumnName = "id")
+    private Employee relatedEmployee;
 
 
 }

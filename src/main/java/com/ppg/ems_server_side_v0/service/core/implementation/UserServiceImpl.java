@@ -8,7 +8,6 @@ import com.ppg.ems_server_side_v0.model.api.response.UserResponse;
 import com.ppg.ems_server_side_v0.repository.RoleRepository;
 import com.ppg.ems_server_side_v0.repository.UserRepository;
 import com.ppg.ems_server_side_v0.service.core.UserService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse addUser(UserDTO userDTO) {
 
-        Role role = this.roleRepository.findRoleByRole(userDTO.role()).orElseThrow(() -> new RuntimeException("Role not found"));
+        Role role = this.roleRepository.findRoleByRole(userDTO.roleId()).orElseThrow(() -> new RuntimeException("Role not found"));
 
         User user = User.builder().email(userDTO.email()).
                 password(this.passwordEncoder.encode(userDTO.password())).
@@ -39,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
         if (!this.userRepository.findByEmail(user.getEmail()).isPresent()) {
 
-            return this.userMapper.userMapper(this.userRepository.save(user));
+            return this.userMapper.toUserReponse(this.userRepository.save(user));
 
         } else {
 
@@ -58,10 +57,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userDTO.password());
 
         user.setRole(this.roleRepository.
-                findRoleByRole(userDTO.role()).
+                findRoleByRole(userDTO.roleId()).
                 orElseThrow(() -> new RuntimeException("Role not found")));
 
-        return this.userMapper.userMapper(this.userRepository.save(user));
+        return this.userMapper.toUserReponse(this.userRepository.save(user));
     }
 
     @Override
@@ -75,14 +74,14 @@ public class UserServiceImpl implements UserService {
 
         User user = this.userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 
-        return this.userMapper.userMapper(user);
+        return this.userMapper.toUserReponse(user);
 
     }
 
     @Override
     public List<UserResponse> findAllUser() {
 
-        return this.userMapper.allUsersMapper(this.userRepository.findAll());
+        return this.userMapper.toUserReponseList(this.userRepository.findAll());
 
     }
 

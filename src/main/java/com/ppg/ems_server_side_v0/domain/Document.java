@@ -22,21 +22,21 @@ public class Document extends BaseEntity {
 
     private String ECMPath;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "document")
+    @OneToOne(mappedBy = "document")
     private Contract contract;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "document")
+    @OneToOne( mappedBy = "document")
     private Cv resume;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "document")
+    @OneToOne( mappedBy = "document")
     private Invoice invoice;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "folderId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "folderId", referencedColumnName = "id")
     private Folder folder;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "departmentId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departmentId", referencedColumnName = "id")
     private Department department;
 
 

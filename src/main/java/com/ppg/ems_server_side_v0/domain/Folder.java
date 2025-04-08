@@ -22,6 +22,6 @@ public class Folder extends BaseEntity{
 
     private String ECMPath;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "folder")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "folder")
     private List<Document>  documents;
 }

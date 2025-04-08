@@ -18,9 +18,9 @@ import java.util.List;
 @SuperBuilder
 public class Task extends BaseEntity {
 
-    private LocalDateTime startDate;
+    private String startDate;
 
-    private LocalDateTime endDate;
+    private String endDate;
 
     private String status;
 
@@ -29,7 +29,7 @@ public class Task extends BaseEntity {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "projectId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "projectId", referencedColumnName = "id")
     private Project project;
 
 

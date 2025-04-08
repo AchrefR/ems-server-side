@@ -1,16 +1,25 @@
 package com.ppg.ems_server_side_v0.controller;
 
+import com.ppg.ems_server_side_v0.domain.Address;
+import com.ppg.ems_server_side_v0.domain.Person;
+import com.ppg.ems_server_side_v0.domain.Role;
 import com.ppg.ems_server_side_v0.domain.User;
+import com.ppg.ems_server_side_v0.domain.enums.PersonType;
 import com.ppg.ems_server_side_v0.model.api.request.UserDTO;
 
 import com.ppg.ems_server_side_v0.model.api.response.UserResponse;
+import com.ppg.ems_server_side_v0.repository.AddressRepository;
+import com.ppg.ems_server_side_v0.repository.PersonRepository;
 import com.ppg.ems_server_side_v0.repository.RoleRepository;
+import com.ppg.ems_server_side_v0.repository.UserRepository;
 import com.ppg.ems_server_side_v0.service.core.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,8 +27,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
-    private final RoleRepository roleRepository;
 
     @PostMapping("/user/")
     public ResponseEntity<UserResponse> addUser(@RequestBody UserDTO userDTO) {

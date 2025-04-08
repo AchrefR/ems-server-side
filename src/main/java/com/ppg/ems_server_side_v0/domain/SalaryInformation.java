@@ -22,7 +22,7 @@ public class SalaryInformation extends BaseEntity {
 
     private double hourlyRate;
 
-    @OneToOne(mappedBy = "salaryInformation",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "salaryInformation",fetch = FetchType.LAZY)
     private Employee employee;
 
 }

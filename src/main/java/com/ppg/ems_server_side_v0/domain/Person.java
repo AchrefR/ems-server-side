@@ -24,15 +24,17 @@ public class Person extends BaseEntity {
 
     private String personType;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name="addressId",referencedColumnName = "id",nullable = false)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "addressId", referencedColumnName = "id", nullable = false)
     private Address address;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name="userId",referencedColumnName = "id",nullable = false)
-    private User user ;
+    @OneToOne( mappedBy = "person")
+    private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "appliedBy")
+    @OneToMany( mappedBy = "appliedBy")
     private List<Application> applications;
+
+    @OneToOne( mappedBy = "person")
+    private Employee employee;
 
 }

@@ -30,12 +30,16 @@ public class User extends BaseEntity implements UserDetails  {
     @JsonIgnore
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "roleId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roleId", referencedColumnName = "id",nullable = false)
     private Role role;
 
-    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "personId", referencedColumnName = "id",nullable = false)
     private Person person;
+
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

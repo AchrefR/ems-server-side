@@ -16,34 +16,42 @@ import java.util.List;
 public class Employee extends BaseEntity {
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "salaryInformationId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "personId", referencedColumnName = "id")
+    private Person person;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "salaryInformationId", referencedColumnName = "id")
     private SalaryInformation salaryInformation;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "employee")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "contractId", referencedColumnName = "id")
     private Contract contract;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "positionId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "positionId", referencedColumnName = "id")
     private Position position;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "departmentId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departmentId", referencedColumnName = "id")
     private Department department;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "teamId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teamId", referencedColumnName = "id")
     private Team team;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projectLeader")
+    @OneToMany(mappedBy = "projectLeader")
     private List<Project> managedProjects;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "relatedEmployee")
+    @OneToMany(mappedBy = "relatedEmployee")
     private List<PayCheck> payChecks;
 
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "relatedEmployee")
+    @OneToMany(mappedBy = "relatedEmployee")
     private List<Attendance> attendances;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private User user;
 
-
+    @OneToMany(mappedBy = "interviewerEmployee")
+    private List<Interview> interviews;
 }

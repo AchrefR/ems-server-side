@@ -13,15 +13,16 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Cv extends BaseEntity {
 
-    @OneToOne(mappedBy = "resume", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "resume")
     private Application application;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false)
     private User employee;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "documentId", referencedColumnName = "id", nullable = false)
     private Document document;
+
 
 }

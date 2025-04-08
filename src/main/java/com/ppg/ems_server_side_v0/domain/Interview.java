@@ -17,9 +17,13 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class Interview extends BaseEntity{
 
-    private LocalDateTime date;
+    private String date;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "relatedApplicationId", referencedColumnName = "id", nullable = false)
     private Application relatedApplication;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "interviewerEmployeeId", referencedColumnName = "id", nullable = false)
+    private Employee interviewerEmployee;
 }

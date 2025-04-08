@@ -27,7 +27,7 @@ public class Address extends BaseEntity {
 
     private String town;
 
-    @OneToOne(mappedBy = "address", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Person person;
 
 }
