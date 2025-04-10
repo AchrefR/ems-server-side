@@ -14,6 +14,6 @@ public record TaskResponse(
 
         String description,
 
-        ProjectResponse projectResponse
+        String projectId
 
 ) {}

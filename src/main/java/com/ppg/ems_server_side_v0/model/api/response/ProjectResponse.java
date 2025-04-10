@@ -10,10 +10,8 @@ public record ProjectResponse(
 
         String projectDeadline,
 
-        DepartmentResponse departmentResponse,
+        String departmentId,
 
-        EmployeeResponse projectLeader,
-
-        List<EmployeeResponse> relatedEmployees
+        String projectLeaderId
 
 ) {}

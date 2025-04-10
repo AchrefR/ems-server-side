@@ -6,8 +6,8 @@ public record InterviewResponse(
 
         String interviewId,
 
-        ApplicationResponse applicationResponse,
+        String applicationId,
 
-        EmployeeResponse interviewerEmployee
+        String interviewerId
 
         ) {}

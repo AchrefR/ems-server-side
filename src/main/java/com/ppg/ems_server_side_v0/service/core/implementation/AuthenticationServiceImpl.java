@@ -1,5 +1,6 @@
 package com.ppg.ems_server_side_v0.service.core.implementation;
 
+import com.ppg.ems_server_side_v0.mapper.UserMapper;
 import com.ppg.ems_server_side_v0.model.api.request.AuthenticationDTO;
 import com.ppg.ems_server_side_v0.model.api.response.AuthenticationResponse;
 import com.ppg.ems_server_side_v0.model.api.response.UserResponse;
@@ -23,6 +24,8 @@ public class AuthenticationServiceImpl {
 
     private final JwtService jwtService;
 
+    private final UserMapper userMapper;
+
     public AuthenticationResponse authenticate(AuthenticationDTO authenticationDTO) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -32,8 +35,7 @@ public class AuthenticationServiceImpl {
         );
         var user = userService.findUserByEmail(authenticationDTO.email());
         var jwtToken = jwtService.generateToken(user);
-        UserResponse userResponse = new UserResponse(user.getId(), user.getEmail(), user.getRole().getRole());
-        return new AuthenticationResponse(jwtToken,userResponse);
+        return new AuthenticationResponse(jwtToken, this.userMapper.toUserReponse(user));
 
     }
 }

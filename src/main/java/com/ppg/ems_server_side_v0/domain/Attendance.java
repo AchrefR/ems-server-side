@@ -20,6 +20,8 @@ import java.util.List;
 @SuperBuilder
 public class Attendance extends BaseEntity {
 
+    private String attendanceDate;
+
     private String checkInTime;
 
     private String checkOutTime;
@@ -29,7 +31,7 @@ public class Attendance extends BaseEntity {
     private boolean isAbsent;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="relatedEmployeeId",referencedColumnName = "id")
+    @JoinColumn(name = "relatedEmployeeId", referencedColumnName = "id")
     private Employee relatedEmployee;
 
 

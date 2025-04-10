@@ -8,8 +8,8 @@ public record ApplicationResponse(
 
         String appliedDate,
 
-        JobPostResponse jobPostResponse,
+        String jobId,
 
-        PersonResponse personResponse
+        String personId
 
 ) {}

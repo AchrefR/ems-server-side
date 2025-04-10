@@ -17,11 +17,11 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Role_Access extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", referencedColumnName = "id")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "accessId", referencedColumnName = "id")
     private Access access;
 

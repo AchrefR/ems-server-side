@@ -4,10 +4,13 @@ import com.ppg.ems_server_side_v0.domain.Application;
 import com.ppg.ems_server_side_v0.model.api.response.ApplicationResponse;
 import com.ppg.ems_server_side_v0.model.api.response.JobPostResponse;
 import com.ppg.ems_server_side_v0.model.api.response.PersonResponse;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ApplicationMapper {
 
     ApplicationResponse toApplicationResponse(Application application) {
@@ -15,23 +18,8 @@ public class ApplicationMapper {
                 application.getId(),
                 application.getDescription(),
                 application.getAppliedDate(),
-                new JobPostResponse(
-                        application.getJobPost().getId(),
-                        application.getJobPost().getTitle(),
-                        application.getJobPost().getDescription()
-                ),
-                new PersonResponse(
-                        application.getAppliedBy().getId(),
-                        application.getAppliedBy().getFirstName(),
-                        application.getAppliedBy().getLastName(),
-                        application.getAppliedBy().getBirthDate(),
-                        application.getAppliedBy().getPhoneNumber(),
-                        application.getAppliedBy().getPersonType(),
-                        application.getAppliedBy().getAddress().getStreetName(),
-                        application.getAppliedBy().getAddress().getZipCode(),
-                        application.getAppliedBy().getAddress().getState(),
-                        application.getAppliedBy().getAddress().getTown()
-                )
+                application.getJobPost().getId(),
+                application.getAppliedBy().getId()
         );
     }
 

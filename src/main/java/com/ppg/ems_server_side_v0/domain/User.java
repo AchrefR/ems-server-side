@@ -1,21 +1,17 @@
 package com.ppg.ems_server_side_v0.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -23,7 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @SuperBuilder
 @Table(name = "appuser")
-public class User extends BaseEntity implements UserDetails  {
+public class User extends BaseEntity implements UserDetails {
 
     private String email;
 
@@ -31,14 +27,14 @@ public class User extends BaseEntity implements UserDetails  {
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "roleId", referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "roleId", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "personId", referencedColumnName = "id",nullable = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "personId", referencedColumnName = "id", nullable = false)
     private Person person;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Employee employee;
 
     @Override

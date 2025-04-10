@@ -21,10 +21,10 @@ public class Role extends BaseEntity {
 
     private String role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    @OneToMany( mappedBy = "role")
     private List<User> users = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST, mappedBy = "role")
+    @OneToMany( mappedBy = "role")
     private List<Role_Access> role_accesses = new ArrayList<Role_Access>();
 
 

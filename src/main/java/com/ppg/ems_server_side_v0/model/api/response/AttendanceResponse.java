@@ -4,10 +4,12 @@ public record AttendanceResponse(
 
         String attendanceId,
 
+        String attendanceDate,
+
         String checkInTime,
 
         String checkOutTime,
 
-        EmployeeResponse employeeResponse
+        String employeeId
 
 ) {}

@@ -9,5 +9,4 @@ public record RoleResponse(
         String role,
 
         List<String> accesses
-) {
-}
+) {}
