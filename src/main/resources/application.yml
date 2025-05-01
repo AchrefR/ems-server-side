@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: 8088
 
 spring:
   datasource:
@@ -17,6 +17,7 @@ spring:
         show_sql: false
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-#logging:
-#  level:
-#    org.springframework.security: TRACE
+logging:
+  level:
+    org:
+      springframework: info

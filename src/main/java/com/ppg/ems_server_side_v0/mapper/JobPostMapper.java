@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JobPostMapper {
-    JobPostResponse toJobPostResponse(JobPost jobPost) {
+    public JobPostResponse toJobPostResponse(JobPost jobPost) {
         return new JobPostResponse(
                 jobPost.getId(),
                 jobPost.getTitle(),
@@ -19,7 +19,7 @@ public class JobPostMapper {
         );
     }
 
-    List<JobPostResponse> toJobPostResponseList(List<JobPost> jobPosts) {
+    public List<JobPostResponse> toJobPostResponseList(List<JobPost> jobPosts) {
         List<JobPostResponse> jobPostResponseList = new ArrayList<>();
         jobPosts.forEach(jobPost -> {
             jobPostResponseList.add(toJobPostResponse(jobPost));

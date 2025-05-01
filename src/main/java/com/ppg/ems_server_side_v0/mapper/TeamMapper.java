@@ -12,13 +12,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TeamMapper {
 
-    TeamResponse toTeamResponse(Team team) {
+    public TeamResponse toTeamResponse(Team team) {
         return new TeamResponse(
                 team.getId()
         );
     }
 
-    List<TeamResponse> toTeamResponseList(List<Team> teams) {
+    public List<TeamResponse> toTeamResponseList(List<Team> teams) {
         List<TeamResponse> teamResponses = new ArrayList<>();
         teams.forEach(team ->
                 teamResponses.add(toTeamResponse(team))

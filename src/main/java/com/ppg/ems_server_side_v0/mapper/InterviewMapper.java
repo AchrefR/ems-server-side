@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 public class InterviewMapper {
 
-    InterviewResponse toInterviewResponse(Interview interview) {
+    public InterviewResponse toInterviewResponse(Interview interview) {
         return new InterviewResponse(
                 interview.getId(),
+                interview.getDate(),
                 interview.getRelatedApplication().getId(),
                 interview.getInterviewerEmployee().getId()
         );
     }
 
-    List<InterviewResponse> toInterviewResponseList(List<Interview> interviews) {
+    public List<InterviewResponse> toInterviewResponseList(List<Interview> interviews) {
         List<InterviewResponse> interviewsResponses = new ArrayList<>();
         interviews.forEach(interview -> {
             interviewsResponses.add(toInterviewResponse(interview));

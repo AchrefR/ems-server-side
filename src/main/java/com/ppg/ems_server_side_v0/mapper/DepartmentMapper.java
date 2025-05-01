@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartmentMapper {
 
-    DepartmentResponse toDepartmentResponse(Department department) {
+    public DepartmentResponse toDepartmentResponse(Department department) {
         return new DepartmentResponse(
                 department.getId(),
                 department.getDepartmentName(),
@@ -22,7 +22,7 @@ public class DepartmentMapper {
         );
     }
 
-    List<DepartmentResponse> toDepartmentReponseList(List<Department> departmentList) {
+    public List<DepartmentResponse> toDepartmentReponseList(List<Department> departmentList) {
         List<DepartmentResponse> departmentResponseList = new ArrayList<>();
         departmentList.forEach(department -> {
             departmentResponseList.add(toDepartmentResponse(department));

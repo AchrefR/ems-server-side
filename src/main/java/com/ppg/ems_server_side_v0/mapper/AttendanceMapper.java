@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AttendanceMapper {
 
-    AttendanceResponse toAttendanceResponse(Attendance attendance) {
+    public AttendanceResponse toAttendanceResponse(Attendance attendance) {
         return new AttendanceResponse(
                 attendance.getId(),
                 attendance.getAttendanceDate(),
@@ -22,7 +22,7 @@ public class AttendanceMapper {
         );
     }
 
-    List<AttendanceResponse> toAttendanceReponseList(List<Attendance> attendanceList) {
+    public List<AttendanceResponse> toAttendanceReponseList(List<Attendance> attendanceList) {
         List<AttendanceResponse> attendanceResponseList = new ArrayList<>();
         attendanceList.forEach(attendance -> {
             attendanceResponseList.add(toAttendanceResponse(attendance));

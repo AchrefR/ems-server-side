@@ -4,8 +4,6 @@ public record AddressDTO(
 
         String streetName,
 
-        String streetNumber,
-
         String zipCode,
 
         String state,

@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FolderMapper {
 
-    FolderResponse toFolderResponse(Folder folder) {
+    public FolderResponse toFolderResponse(Folder folder) {
         return new FolderResponse(
                 folder.getId(),
                 folder.getFolderName(),
@@ -20,7 +20,7 @@ public class FolderMapper {
         );
     }
 
-    List<FolderResponse> toFolderResponseList(List<Folder> folders) {
+    public List<FolderResponse> toFolderResponseList(List<Folder> folders) {
         List<FolderResponse> foldersResponses = new ArrayList<>();
         folders.forEach(folder -> {
             foldersResponses.add(toFolderResponse(folder));

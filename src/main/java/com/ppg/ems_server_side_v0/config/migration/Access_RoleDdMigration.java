@@ -17,7 +17,7 @@ import java.util.List;
 @Component
 @Order(3)
 @RequiredArgsConstructor
-public class Access_roleBdMigration implements ApplicationListener<Notifier> {
+public class Access_RoleDdMigration implements ApplicationListener<Notifier> {
 
     private final AccessRepository accessRepository;
 

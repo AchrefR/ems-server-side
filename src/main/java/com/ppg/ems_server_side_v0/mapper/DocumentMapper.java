@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentMapper {
 
-    DocumentResponse toDocumentResponse(Document document) {
+    public DocumentResponse toDocumentResponse(Document document) {
         return new DocumentResponse(
                 document.getId(),
                 document.getDocumentName(),
@@ -21,7 +21,7 @@ public class DocumentMapper {
         );
     }
 
-    List<DocumentResponse> toDocumentReponseList(List<Document> documentList) {
+    public List<DocumentResponse> toDocumentReponseList(List<Document> documentList) {
         List<DocumentResponse> documentResponseList = new ArrayList<>();
         documentList.forEach(document -> {
             documentResponseList.add(toDocumentResponse(document));

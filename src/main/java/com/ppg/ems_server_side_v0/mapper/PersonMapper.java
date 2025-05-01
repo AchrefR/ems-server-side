@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class PersonMapper {
 
-    PersonResponse toPersonResponse(Person person) {
+    public PersonResponse toPersonResponse(Person person) {
 
         return new PersonResponse(
                 person.getId(),
@@ -26,7 +26,7 @@ public class PersonMapper {
         );
     }
 
-    List<PersonResponse> toPersonReponseList(List<Person> persons) {
+    public List<PersonResponse> toPersonReponseList(List<Person> persons) {
 
         List<PersonResponse> personResponses = new ArrayList<>();
         persons.forEach(person -> {

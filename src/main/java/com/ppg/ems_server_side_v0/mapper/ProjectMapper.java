@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProjectMapper {
 
-    ProjectResponse toProjectResponse(Project project) {
+    public ProjectResponse toProjectResponse(Project project) {
         return new ProjectResponse(
                 project.getId(),
                 project.getDescription(),
@@ -23,7 +23,7 @@ public class ProjectMapper {
         );
     }
 
-    List<ProjectResponse> toProjectResponseList(List<Project> projectList) {
+    public List<ProjectResponse> toProjectResponseList(List<Project> projectList) {
         List<ProjectResponse> projectResponseList = new ArrayList<>();
         projectList.forEach(project -> {
             projectResponseList.add(toProjectResponse(project));

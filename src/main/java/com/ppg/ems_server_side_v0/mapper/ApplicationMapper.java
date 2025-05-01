@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class ApplicationMapper {
 
-    ApplicationResponse toApplicationResponse(Application application) {
+    public ApplicationResponse toApplicationResponse(Application application) {
         return new ApplicationResponse(
                 application.getId(),
                 application.getDescription(),
@@ -23,7 +23,7 @@ public class ApplicationMapper {
         );
     }
 
-    List<ApplicationResponse> toApplicationResponseList(List<Application> applications) {
+    public List<ApplicationResponse> toApplicationResponseList(List<Application> applications) {
         List<ApplicationResponse> applicationResponses = new ArrayList<>();
         applications.forEach(application -> {
             applicationResponses.add(toApplicationResponse(application));

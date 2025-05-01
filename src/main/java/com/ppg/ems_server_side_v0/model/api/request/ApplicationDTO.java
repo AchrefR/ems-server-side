@@ -6,7 +6,9 @@ public record ApplicationDTO(
 
         String description,
 
+        String appliedDate,
+
         String jobPostId,
 
-        PersonDTO personDTO
+        PersonDTO appliedBy
 ) {}

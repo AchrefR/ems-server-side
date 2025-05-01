@@ -6,6 +6,8 @@ public record InterviewResponse(
 
         String interviewId,
 
+        String date,
+
         String applicationId,
 
         String interviewerId

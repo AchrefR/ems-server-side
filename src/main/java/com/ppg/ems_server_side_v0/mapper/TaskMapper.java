@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskMapper {
 
-    TaskResponse toTaskResponse(Task task) {
+    public TaskResponse toTaskResponse(Task task) {
         return new TaskResponse(
                 task.getId(),
                 task.getStartDate(),
@@ -25,7 +25,7 @@ public class TaskMapper {
 
     }
 
-    List<TaskResponse> toTaskResponseList(List<Task> tasks) {
+    public List<TaskResponse> toTaskResponseList(List<Task> tasks) {
         List<TaskResponse> taskResponses = new ArrayList<>();
         tasks.forEach(task -> {
             taskResponses.add(toTaskResponse(task));

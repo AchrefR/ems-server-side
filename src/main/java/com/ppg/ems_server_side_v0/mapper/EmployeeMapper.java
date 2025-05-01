@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeMapper {
 
-    EmployeeResponse toEmployeeResponse(Employee employee) {
+    public EmployeeResponse toEmployeeResponse(Employee employee) {
         return new EmployeeResponse(
                 employee.getId(),
                 new PersonResponse(
@@ -40,7 +40,7 @@ public class EmployeeMapper {
                         employee.getUser().getPerson().getId()));
     }
 
-    List<EmployeeResponse> toEmployeeResponseList(List<Employee> employees) {
+    public List<EmployeeResponse> toEmployeeResponseList(List<Employee> employees) {
         List<EmployeeResponse> employeesResponseList = new ArrayList<>();
         employees.forEach(employee -> employeesResponseList.add(toEmployeeResponse(employee)));
         return employeesResponseList;

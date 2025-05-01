@@ -12,14 +12,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PositionMapper {
 
-    PositionResponse toPositionResponse(Position position) {
+    public PositionResponse toPositionResponse(Position position) {
         return new PositionResponse(
                 position.getId(),
                 position.getTitle()
         );
     }
 
-    List<PositionResponse> toPositionResponseList(List<Position> positions) {
+    public List<PositionResponse> toPositionResponseList(List<Position> positions) {
         List<PositionResponse> positionResponseList = new ArrayList<>();
         positions.forEach(position -> {
             positionResponseList.add(toPositionResponse(position));

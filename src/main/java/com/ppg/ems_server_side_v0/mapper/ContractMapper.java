@@ -12,14 +12,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContractMapper {
 
-    ContractResponse toContractResponse(Contract contract) {
+    public ContractResponse toContractResponse(Contract contract) {
         return new ContractResponse(
                 contract.getId(),
                 contract.getContactNumber()
         );
     }
 
-    List<Contract> toContactList(List<Contract> contractList) {
+    public List<Contract> toContactList(List<Contract> contractList) {
         List<ContractResponse> contractListResponse = new ArrayList<>();
         contractList.forEach(contract -> {
             contractListResponse.add(toContractResponse(contract));
