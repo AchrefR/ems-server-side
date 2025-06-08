@@ -15,6 +15,8 @@ import java.math.BigInteger;
 @SuperBuilder
 public class Contract extends BaseEntity {
 
+    private String contractId;
+
     private String contactNumber;
 
     @OneToOne(fetch = FetchType.LAZY)

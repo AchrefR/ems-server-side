@@ -15,29 +15,16 @@ public class EmployeeMapper {
     public EmployeeResponse toEmployeeResponse(Employee employee) {
         return new EmployeeResponse(
                 employee.getId(),
-                new PersonResponse(
-                        employee.getPerson().getId(),
-                        employee.getPerson().getFirstName(),
-                        employee.getPerson().getLastName(),
-                        employee.getPerson().getBirthDate(),
-                        employee.getPerson().getPhoneNumber(),
-                        employee.getPerson().getPersonType(),
-                        employee.getPerson().getAddress().getStreetName(),
-                        employee.getPerson().getAddress().getZipCode(),
-                        employee.getPerson().getAddress().getState(),
-                        employee.getPerson().getAddress().getTown()),
-                new PositionResponse(
-                        employee.getPosition().getId(),
-                        employee.getPosition().getTitle()),
-                new DepartmentResponse(
-                        employee.getDepartment().getId(),
-                        employee.getDepartment().getDepartmentName(),
-                        employee.getDepartment().getDepartmentType()),
+                employee.getPerson().getFirstName(),
+                employee.getPosition().getTitle(),
+                employee.getDepartment().getDepartmentName(),
                 new UserResponse(
                         employee.getUser().getId(),
                         employee.getUser().getEmail(),
                         employee.getUser().getRole().getRole(),
-                        employee.getUser().getPerson().getId()));
+                        employee.getUser().getPerson().getId()
+                )
+        );
     }
 
     public List<EmployeeResponse> toEmployeeResponseList(List<Employee> employees) {

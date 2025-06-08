@@ -4,11 +4,11 @@ public record EmployeeResponse(
 
         String employeeId,
 
-        PersonResponse personResponse,
+        String name,
 
-        PositionResponse positionResponse,
+        String positionName,
 
-        DepartmentResponse departmentResponse,
+        String departmentName,
 
         UserResponse userResponse
 
