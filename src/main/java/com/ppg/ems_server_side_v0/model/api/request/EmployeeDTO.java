@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 
 public record EmployeeDTO(
 
-        PersonDTO personDto,
+        String email,
 
-        SalaryInformationDTO salaryInformationDTO,
+        String personId,
+
+        String salaryInformationId,
 
         String positionId,
 

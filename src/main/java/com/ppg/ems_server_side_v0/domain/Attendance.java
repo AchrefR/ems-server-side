@@ -34,5 +34,4 @@ public class Attendance extends BaseEntity {
     @JoinColumn(name = "relatedEmployeeId", referencedColumnName = "id")
     private Employee relatedEmployee;
 
-
 }

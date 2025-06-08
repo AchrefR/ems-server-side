@@ -9,7 +9,7 @@ public interface InterviewService {
 
     InterviewResponse addInterview(InterviewDTO interviewDTO);
 
-    InterviewResponse updateInterviewById(InterviewResponse interviewResponse, String id);
+    InterviewResponse updateInterviewById(InterviewDTO interviewDTO, String id);
 
     void deleteInterviewById(String id);
 
