@@ -17,6 +17,17 @@ spring:
         show_sql: false
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+      enabled: true
+
+app:
+  cv:
+    upload:
+      dir: uploads/cvs
 logging:
   level:
     org:
