@@ -31,7 +31,4 @@ public class Department extends BaseEntity {
     private List<Project> projects;
 
 
-
-
-
 }

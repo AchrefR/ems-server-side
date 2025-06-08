@@ -45,11 +45,11 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public InterviewResponse updateInterviewById(InterviewResponse interviewResponse, String id) {
+    public InterviewResponse updateInterviewById(InterviewDTO interviewDTO, String id) {
 
         Interview interview = this.interviewRepository.findById(id).orElseThrow(() -> new RuntimeException("interview is not found"));
 
-        interview.setDate(interviewResponse.date());
+        interview.setDate(interviewDTO.date());
         Interview interviewAfterChange = this.interviewRepository.save(interview);
 
         return this.interviewMapper.toInterviewResponse(interviewAfterChange);
