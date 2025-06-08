@@ -28,6 +28,10 @@ app:
   cv:
     upload:
       dir: uploads/cvs
+  files:
+    upload:
+      dir: uploads/documents
+      max-size: 10MB
 logging:
   level:
     org:
