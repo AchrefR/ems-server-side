@@ -91,7 +91,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskResponse> findTasksByStatus(String status) {
-        List<Task> tasks = taskRepository.findByStatus(status);
+        List<Task> tasks = taskRepository.findByStatusString(status);
         return taskMapper.toTaskResponseList(tasks);
     }
 }
