@@ -2,7 +2,13 @@ package com.ppg.ems_server_side_v0.service.core.implementation;
 
 import com.ppg.ems_server_side_v0.domain.*;
 import com.ppg.ems_server_side_v0.dto.*;
-import com.ppg.ems_server_side_v0.repository.*;
+import com.ppg.ems_server_side_v0.repository.EmployeeRepository;
+import com.ppg.ems_server_side_v0.repository.DepartmentRepository;
+import com.ppg.ems_server_side_v0.repository.PerformanceReviewRepository;
+import com.ppg.ems_server_side_v0.repository.LeaveRequestRepository;
+import com.ppg.ems_server_side_v0.repository.EmployeeBalanceRepository;
+import com.ppg.ems_server_side_v0.repository.PositionRepository;
+import com.ppg.ems_server_side_v0.repository.SalaryInformationRepository;
 import com.ppg.ems_server_side_v0.service.core.HRService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -13,16 +13,37 @@ import java.util.List;
 public class TaskMapper {
 
     public TaskResponse toTaskResponse(Task task) {
-        return new TaskResponse(
-                task.getId(),
-                task.getStartDate(),
-                task.getEndDate(),
-                task.getStatus(),
-                task.getPriority(),
-                task.getDescription(),
-                task.getProject().getId()
-        );
-
+        return TaskResponse.builder()
+                .id(task.getId())
+                .title(task.getTitle())
+                .description(task.getDescription())
+                .status(task.getStatus() != null ? task.getStatus().name() : null)
+                .priority(task.getPriority() != null ? task.getPriority().name() : null)
+                .projectId(task.getProject() != null ? task.getProject().getId() : null)
+                .projectName(task.getProject() != null ? task.getProject().getTitle() : null)
+                .assignedToId(task.getAssignedTo() != null ? task.getAssignedTo().getId() : null)
+                .assignedToName(task.getAssignedTo() != null ?
+                    (task.getAssignedTo().getPerson() != null ?
+                        task.getAssignedTo().getPerson().getFirstName() + " " + task.getAssignedTo().getPerson().getLastName()
+                        : "Unknown") : null)
+                .createdById(task.getCreatedBy() != null ? task.getCreatedBy().getId() : null)
+                .createdByName(task.getCreatedBy() != null ?
+                    (task.getCreatedBy().getPerson() != null ?
+                        task.getCreatedBy().getPerson().getFirstName() + " " + task.getCreatedBy().getPerson().getLastName()
+                        : "Unknown") : null)
+                .dueDate(task.getDueDate())
+                .startedAt(task.getStartedAt())
+                .completedAt(task.getCompletedAt())
+                .createdAt(task.getCreatedAt())
+                .estimatedHours(task.getEstimatedHours())
+                .actualHours(task.getActualHours())
+                .progressPercentage(task.getProgressPercentage())
+                .notes(task.getNotes())
+                .category(task.getCategory())
+                .isCompleted(task.getStatus() == Task.TaskStatus.COMPLETED)
+                .isInProgress(task.getStatus() == Task.TaskStatus.IN_PROGRESS)
+                .isOverdue(task.getDueDate() != null && task.getDueDate().isBefore(java.time.LocalDate.now()) && task.getStatus() != Task.TaskStatus.COMPLETED)
+                .build();
     }
 
     public List<TaskResponse> toTaskResponseList(List<Task> tasks) {

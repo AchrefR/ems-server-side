@@ -31,8 +31,8 @@ public class TaskServiceImpl implements TaskService {
         Task task = Task.builder()
                 .startDate(taskDTO.startDate())
                 .endDate(taskDTO.endDate())
-                .status(taskDTO.status())
-                .priority(taskDTO.priority())
+                .status(taskDTO.status() != null ? Task.TaskStatus.valueOf(taskDTO.status()) : null)
+                .priority(taskDTO.priority() != null ? Task.TaskPriority.valueOf(taskDTO.priority()) : null)
                 .description(taskDTO.description())
                 .project(project)
                 .build();
@@ -54,8 +54,8 @@ public class TaskServiceImpl implements TaskService {
 
         existingTask.setStartDate(taskDTO.startDate());
         existingTask.setEndDate(taskDTO.endDate());
-        existingTask.setStatus(taskDTO.status());
-        existingTask.setPriority(taskDTO.priority());
+        existingTask.setStatus(taskDTO.status() != null ? Task.TaskStatus.valueOf(taskDTO.status()) : null);
+        existingTask.setPriority(taskDTO.priority() != null ? Task.TaskPriority.valueOf(taskDTO.priority()) : null);
         existingTask.setDescription(taskDTO.description());
 
         Task updatedTask = taskRepository.save(existingTask);
